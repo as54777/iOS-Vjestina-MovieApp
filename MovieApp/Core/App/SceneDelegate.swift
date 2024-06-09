@@ -21,9 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-//        let navigationController = UINavigationController()
-//        appRouter = AppRouter(navigationController: navigationController)
-//        appRouter?.setStartScreen(in: window)
+        let navigationController = UINavigationController()
+        appRouter = AppRouter(navigationController: navigationController)
+        appRouter?.setStartScreen(in: window)
            
 //           if isLoggedIn {
 //               let vc = MainViewController()

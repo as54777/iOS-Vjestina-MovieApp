@@ -1,10 +1,9 @@
 import UIKit
 import PureLayout
-import MovieAppData
 
 class MovieDetailsViewController: UIViewController {
     
-    private var movieDetails: MovieDetailsModel?
+    private var viewModel: MovieDetailsViewModel?
     var movieId: Int?
     
     let RatingLabel = UILabel()
@@ -47,11 +46,15 @@ class MovieDetailsViewController: UIViewController {
             fatalError("Movie ID is required")
         }
         
-        movieDetails = MovieUseCase().getDetails(id: movieId)
+        viewModel = MovieDetailsViewModel(movieId: movieId)
         
         createHierarchy()
         styleViews()
         defineLayout()
+        
+        bindViewModel()
+        
+        viewModel?.fetchMovieDetails()
         
         updateViewWithDetails()
         
@@ -213,8 +216,14 @@ class MovieDetailsViewController: UIViewController {
         Role6.autoPinEdge(.leading, to: .leading, of: MemberLabel6)
     }
     
+    func bindViewModel() {
+        viewModel?.onUpdateMovieDetails = { [weak self] in
+            self?.updateViewWithDetails()
+        }
+    }
+    
     func updateViewWithDetails() {
-        guard let movieDetails = movieDetails else { return }
+        guard let movieDetails = viewModel?.movieDetails else { return }
         
         MovieNameLabel.text = movieDetails.name
         
