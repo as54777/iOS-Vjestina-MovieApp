@@ -1,13 +1,13 @@
 //
-//  MovieDetailsViewController.swift
+//  MovieListController.swift
 //  MovieApp
 //
-//  Created by five on 4/4/24.
+//  Created by five on 5/14/24.
 //
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+class MovieListController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
